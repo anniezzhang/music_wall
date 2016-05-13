@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Wall</title>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <% include ../partials/head %>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="createparty">
+            <br><br>
+        <div class="party ">
+
+	        <%=Inf %>
+                <br>
+
+                <form class="form-inline" action="/createparty" method="POST">
+                    <div>
+                        <label for="partyId" class="control-label ">partyId
+                            <input class="form-control " type="text" name="partyId" />
+                        </label>
+                        <label for="partyName" class="control-label ">partyName
+                            <input class="form-control" type="text" name="partyName" />
+                        </label>
+                        <button type="submit" class="btn btn-primary" name="create_my_party">Create My Party</button>
+
+                    </div>
+                    <div class="col-lg-10">
+                        <lable for="select">Max songs per list</lable>
+                        <select class="form-control">
+                            <option>20</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+
+                        <label for="anonymous" class="checkbox-inline ">
+                            <input class="check" type="checkbox" id="anonymous" value="">Allow Anonymous</label>
+                        <label for="bullet" class="checkbox-inline ">
+                            <input class="check" type="checkbox" id="bullet" value="">Allow Bullet Screen</label>
+                    </div>
+                </form>
+                <form id="form4" action="/logout" method="POST">
+                    <button class="btn btn-danger" type="submit" id="button4" style="margin-left:0px">logout</button>
+                </form>
+
+
+        </div>
+            <br><br>
+        <div class="box-row">
+            <div class="info-box"><img src="/assets/css/pic/music_folder.png" alt="music folder"><br>Everybody can add music to your party</div>
+            <div class="info-box "><img src="/assets/css/pic/man_talk.png" alt="a man is talking"><br>Send your message to the screen and let everyone hear your voice</div>
+            <div class="info-box "><img src="/assets/css/pic/mail.png" alt="mail box"><br>Contact us<br>music_wall@gmail.com</div>
+        </div><br><br>
+	</div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        if (!window.jQuery) { document.write('<script src="/assets/js/jquery.js"><\/script>'); }
+    </script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+   
+</body>
+
+</html>

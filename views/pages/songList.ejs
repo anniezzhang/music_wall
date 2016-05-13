@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <% include ../partials/head %>
+<style>
+        body {
+            padding-top: 15px;
+         
+        }
+        h1{
+            font-family: "Lucida Console", Courier, monospace;
+            font-size: 30px;
+            text-align: center;
+            letter-spacing: -2px;
+        }
+        p {
+            font-family: "Lucida Console", Courier, monospace;
+            font-size: 15px;
+            text-align: center;
+            letter-spacing: -2px;
+        }
+        .search-input, .footer{
+            text-align: center;
+        }
+        
+        #searchInput{
+            width: 600px;
+            height: 40px;
+            margin: 10px 0 15px 10px;
+            padding: 0 0 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            vertical-align: bottom;
+        }
+        #searchButton, #submitButton, #bulletSubmit{
+            width: 65px;
+            height: 40px;
+            margin: 10px 0 15px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            
+        }
+        #bulletInput{
+            width: 400px;
+            height: 40px;
+            margin: 10px 0 15px 10px;
+            padding: 0 0 0 10px;
+    
+            border: 1px solid #ccc;
+            border-radius: 4px;
+           
+         
+        }
+        hr {
+            margin-top: 0;
+        }
+        
+        .search_results {
+            text-align: center;
+            height:400px;
+            overflow:auto;
+            background:#fff;
+            
+        }
+        .forEachResult {
+            margin: 0;
+            height:135px;
+        }
+        .result{
+            width:700px;
+            margin:0;
+            padding: 0;
+        }
+        .result input {
+            border: none;
+            width: 60px;
+            height: 60px;
+          
+            display: block;
+            margin: 42px 0 0 5px;
+            float: left;
+        }
+        .result img {
+            border: none;
+            float: left;
+            width: 230px;
+            height: 130px;
+            margin: 10px 28px 5px 28px;
+            
+        }
+        .desc {
+            padding-top: 40px;
+            border: none;
+            float: left;
+            width: 260px;
+            height: 250px;
+            margin-left: 10px;
+
+        } 
+        .description{
+            /*white-space: nowrap;      
+            overflow: hidden;             
+            text-overflow: ellipsis;*/
+            color: dimgray;
+        }
+       @media screen and (max-width: 768px) {
+            body {
+                padding-top: 0;
+                margin-top: 0;
+            }
+            h1{
+                font-family: "Lucida Console", Courier, monospace;
+                font-size: 25px;
+                text-align: center;
+                letter-spacing: -2px;
+            }
+            .search-input, .footer, .result{
+                text-align: left;
+                margin:0;
+            }
+
+            #searchInput{
+                width: 210px;
+                height: 40px;
+                margin: 10px 0 15px 10px;
+                padding: 0 0 0 10px;
+                
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                
+            }
+            #searchButton, #submitButton, #bulletSubmit{
+                width: 65px;
+                height: 40px;
+                margin: 0px 0 15px 0;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                padding-left: 10px; 
+                
+            }
+            #bulletInput{
+                width: 190px;
+                height: 40px;
+                margin: 10px 0 15px 10px;
+                padding: 0 0 0 10px;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                
+            }
+            .search_results {
+                margin-top:0;
+                height:330px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                background:#fff;
+                
+            }
+            .footer {
+                bottom:0;
+                text-align: center;
+            }
+            .forEachResult {
+                margin: 0;
+                height:90px;
+                background-image: inherit;
+            } 
+            .result {
+                height:90px;
+                overflow-x: hidden;
+                background:#fff;
+            }
+            .result input {
+                border: none;
+                float: left;
+                width: 20px;
+                height: 20px;
+                margin: 45px 15px 0 15px;
+            }
+            .result img {
+                border: none;
+                float: left;
+                width: 140px;
+                height: 85px;
+                margin: 0 10px 0 0;
+                
+            }
+            .desc {
+                border: none;
+                float: left;
+                width: 140px;
+                height: 0;
+                margin-top:-40px;
+
+            } 
+            .title {
+                font-size: 13px;
+            }
+            .description{
+                /*white-space: nowrap;      
+                overflow: hidden;             
+                text-overflow: ellipsis;*/
+                color: dimgray;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Add video to the music wall</h1>
+        <p>Search for your favorite video you wish to add.</p>
+
+
+       <!--search input-->
+        <div class="search-input">
+            <form id="searchForm">
+                <label for="searchInput">
+                    <input type="text" id="searchInput" placeholder="Video name">
+
+                    <input type="button" id="searchButton" value="search" >
+                    <input type="button" id="submitButton" value="submit">
+
+                </label>
+            </form>
+        </div>
+    <hr/>
+
+
+
+
+
+<!--search results-->
+    <div class="search_results" id="search_results" >
+    </div>
+
+  </div>
+
+
+
+    <footer>
+        <div class="footer">
+            <form id="bulletComment" action="/party/addcomment/<%=partyId%>" method="POST">
+                <label for="bulletInput">
+                    <input type="text" id="bulletInput" name="bulletInput" placeholder="Bullet...">
+
+                        <select id="commentColor" name="commentColor">
+                              <option value="black">black</option>
+                              <option value="red" selected>red</option>
+                              <option value="yellow">yellow</option>
+                              <option value="purple">purple</option>
+                        </select>
+
+                    <input type="submit" id="bulletSubmit" value="submit">
+                </label>
+            </form>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        var partyId ='<%=partyId%>'; 
+    </script>
+    <% include ../partials/scripts %>
+
+    <script src="/assets/js/addVideo.js"></script>
+</body>
+
+</html>

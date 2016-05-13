@@ -1,0 +1,28 @@
+body{
+      margin: 0;
+      padding: 0;
+			background: black;
+    }
+  #my_qr{
+	    position: fixed;
+			bottom: 0;
+	    right: 0px;
+  }
+
+
+    #playlist{
+      background: black;
+      color: white;
+      width: 13%;
+      float: right;
+      height: 100%;
+      z-index: 10;
+      position: relative;
+    }
+    #theplayer{
+      width: 87%;
+      background:black;
+      float: left;
+      height: 100%;
+      overflow: hidden;
+    }
